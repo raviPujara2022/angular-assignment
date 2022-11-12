@@ -1,0 +1,49 @@
+<h2>Create New Customer</h2>
+<form [formGroup]="newCustomerFormGroup" (ngSubmit)="onSubmit(newCustomerFormGroup.value)">
+    <mat-card>
+        <div class="container">
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Title</mat-label>
+                    <input matInput placeholder="Enter the title" formControlName="title" />
+                    <mat-error *ngIf="
+              !newCustomerFormGroup.controls['title'].valid &&
+              newCustomerFormGroup.controls['title'].touched
+            ">
+                        Please enter a valid Title
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Email</mat-label>
+                    <input matInput placeholder="Enter the email" formControlName="email" />
+                    <mat-error *ngIf="
+              !newCustomerFormGroup.controls['email'].valid &&
+              newCustomerFormGroup.controls['email'].touched
+            ">
+                        Please enter a valid email address
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="ngx-select" data-toggle="tooltip" data-placement="top" title="Start typing to search the available regions">
+                <ngx-select (selectionChanges)="displayCountryList($event)" formControlName="region" [allowClear]="true" [items]="filteredRegionList"
+                    optionValueField="region" optionTextField="region" placeholder="Select a region"
+                    (selectionChanges)="selectedOption($event)">
+                </ngx-select>
+            </div>
+            <div class="ngx-select" data-toggle="tooltip" data-placement="top" title="Start typing to search the available countries">
+                <ngx-select formControlName="country" [allowClear]="true" [items]="filteredCountryList"
+                    optionValueField="country" optionTextField="country" placeholder="Select a country"
+                    (selectionChanges)="selectedOption($event)">
+                </ngx-select>
+            </div>
+        </div>
+    </mat-card>
+    <div>
+        <button mat-raised-button color="primary" [mat-dialog-close]="newCustomerFormGroup.value" [disabled]="!newCustomerFormGroup.valid"
+            class="create-customer">
+            Create Customer
+        </button>
+    </div>
+</form>

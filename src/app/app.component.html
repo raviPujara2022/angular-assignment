@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div>
+        <div class="dialog-btn--wrapper">
+          <div>
+            <button mat-raised-button color="accent" class="add-customer--btn" (click)="openDialog('addCustomer')">
+              + Add Customer
+            </button>
+          </div>
+          <div>
+            <button mat-raised-button color="primary" (click)="openDialog('addPin')">
+              + Add Pin
+            </button>
+          </div>
+        </div>
+        <app-pin-list [pinListData]="pinsLists"></app-pin-list>
+      </div>
+    </div>
+  </div>
+</div>

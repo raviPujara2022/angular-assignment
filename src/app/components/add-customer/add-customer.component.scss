@@ -1,0 +1,30 @@
+mat-card {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+::ng-deep {
+    .ngx-select {
+        width: 650px;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 7px;
+    }
+
+    .dropdown {
+        width: 67%;
+        margin-left: 45px;
+    }
+
+    .ngx-select__selected {
+        width: 215px;
+    }
+}
+
+.create-customer {
+    margin-left: 280px;
+}
+
+ngx-select {
+    width: 50% !important;
+}

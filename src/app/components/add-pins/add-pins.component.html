@@ -1,0 +1,51 @@
+<h2>Add New Pin</h2>
+<form [formGroup]="addPinsFormGroup" (ngSubmit)="onSubmit(addPinsFormGroup.value)">
+  <mat-card>
+    <div class="container add-new-customer--wrapper">
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Title</mat-label>
+          <input matInput placeholder="Enter the title" formControlName="title" />
+          <mat-error *ngIf="
+              !addPinsFormGroup.controls['title'].valid &&
+              addPinsFormGroup.controls['title'].touched
+            ">
+            Please enter a Title
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="upload-image--wrapper">
+        <div class="ng2-drop--wrapper" ng2FileDrop [uploader]="uploader" (onFileDrop)="onFileSelected($event)"
+          (click)="fileInput.click()">
+          Drop the image
+        </div>
+        <span class="hidden-file--wrapper">
+          <input type="file" ng2FileSelect #fileInput [uploader]="uploader" (onFileSelected)="onFileSelected($event)" />
+        </span>
+        <span><strong>{{ fileUrl }}</strong></span>
+      </div>
+      <div class="ngx-select" data-toggle="tooltip" data-placement="top" title="Start typing to search the available collaborators">
+        <ngx-select formControlName="collaboratory" [allowClear]="true" [items]="customerList"
+          optionValueField="title" optionTextField="title" placeholder="Select a collabrator"
+          (selectionChanges)="selectedOption($event)">
+        </ngx-select>
+        <span *ngIf="!addPinsFormGroup.controls['collaboratory'].valid || addPinsFormGroup.controls['collaboratory'].touched ">Please
+          select a file</span>
+      </div>
+      <div>
+        <mat-radio-group aria-label="Select an option" formControlName="privacy" class="mat-radio--wrapper"
+          [required]="true">
+          <mat-label>Priavcy*</mat-label>
+          <mat-radio-button value="private">Private</mat-radio-button>
+          <mat-radio-button value="public">Public</mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+  </mat-card>
+  <div>
+    <button mat-raised-button color="primary" (click)="getFormValue(addPinsFormGroup.value)"
+      [disabled]="!addPinsFormGroup.valid && !fileUrl" class="create-pin">
+      Create Pin
+    </button>
+  </div>
+</form>
